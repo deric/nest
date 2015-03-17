@@ -1,3 +1,5 @@
+require 'bundler/gem_tasks'
+
 task :test do
   require "cutest"
   Cutest.run(Dir["test/nest*"])

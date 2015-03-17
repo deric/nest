@@ -12,4 +12,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency "redis"
   s.add_development_dependency "cutest"
+  s.add_development_dependency "rake"
 end
