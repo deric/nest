@@ -37,7 +37,7 @@ end
 # Operating with redis.
 scope do
   prepare do
-    @redis = Redis.new
+    @redis = redis_conn
     @redis.flushdb
   end
 
@@ -68,7 +68,7 @@ scope do
 
     Thread.new do
       while !listening; end
-      Nest.new("foo", Redis.new(:db => 15)).publish("")
+      Nest.new("foo", redis_conn(15)).publish("")
     end
 
     foo.subscribe do |on|
@@ -87,8 +87,8 @@ end
 
 scope do
   prepare do
-    @redis1 = Redis.connect(:db => 15)
-    @redis2 = Redis.connect(:db => 14)
+    @redis1 = redis_conn(15)
+    @redis2 = redis_conn(14)
 
     @redis1.flushdb
     @redis2.flushdb
